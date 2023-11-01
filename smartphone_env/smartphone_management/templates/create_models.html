@@ -1,0 +1,15 @@
+<h1>Provide your brand details</h1>
+<form method="post">
+  {% csrf_token %}
+  Select Brand:<select name="selected_brand">
+    {% for each_brand in brands %}
+      <option value="{{ each_brand.id }}">{{ each_brand.Name }}</option>
+    {% endfor %}
+  </select><br />
+  Model:<input type="text" name="model" /><br />
+  Price:<input type="text" name="price" /><br />
+  Release Year:<input type="text" name="year" /><br />
+  Upload<input type="file" id="modelfilename" name="modelfilename"><br />
+  <button name="submit" value="submit_model">SAVE</button>
+</form>
+

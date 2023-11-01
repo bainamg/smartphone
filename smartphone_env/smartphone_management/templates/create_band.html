@@ -1,0 +1,9 @@
+<h1>BRAND DETAILS</h1>
+<h2>Enter Brand details</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    Brand Name:<input type="text" name="brand_name" id="brand_name" /><br />
+    Logo: <input type="file" id="filename" name="filename" /><br />
+    <button name="submit" value="submit_brand">SAVE</button>
+</form>
