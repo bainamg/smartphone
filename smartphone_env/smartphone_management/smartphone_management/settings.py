@@ -119,6 +119,7 @@ USE_TZ = False
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR,
+    BASE_DIR / 'static/css',
 ]
 
 # Default primary key field type

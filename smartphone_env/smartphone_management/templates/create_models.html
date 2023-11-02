@@ -1,5 +1,7 @@
+{% extends "blank_layout.html" %}
+{% block content %}
 <h1>Provide your brand details</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   Select Brand:<select name="selected_brand">
     {% for each_brand in brands %}
@@ -12,4 +14,4 @@
   Upload<input type="file" id="modelfilename" name="modelfilename"><br />
   <button name="submit" value="submit_model">SAVE</button>
 </form>
-
+{% endblock content %}

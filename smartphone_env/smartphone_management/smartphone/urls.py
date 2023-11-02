@@ -22,8 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('create_brand/',views.create_brands,name='CreateBrands'),
     path('create_models/',views.create_models,name='CreateModels'),
-    path('update_models/',views.update_modes,name='UpdateModels'),
+    path('update_models/',views.update_models,name='UpdateModels'),
     path('list_brands/',views.list_brands,name='ListBrands'),
     path('list_models/',views.list_models,name='ListModels'),
+    path('list_brand_models/<int:brand_id>',views.list_brand_models,name='ListBrandModels'),
     path('',views.index,name='index')
 ]

@@ -18,15 +18,22 @@ def create_models(request):
     if request.POST:
         print("----- ", request.POST, request.FILES)
         brand_obj=Brand.objects.get(id=request.POST.get('selected_brand'))
-        model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),Image=request.FILES.get("modelfilename"))
+        model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),Image=request.FILES.get('modelfilename'))
         model_obj.save()
     brands=Brand.objects.all();
     print(brands)
     return render(request,'create_models.html', {'brands': brands})
-def update_modes(request):
+
+def update_models(request):
     return render(request,'update_models.html')
+
 def list_brands(request):
     brand_obj=Brand.objects.all()
     return render(request,'list_brand.html',{'brands':brand_obj})
+
+def list_brand_models(request, brand_id):
+    model_obj=PhoneModels.objects.filter(brand=brand_id)
+    return render(request, 'list_brand_models.html', {"models":model_obj})
+
 def list_models(request):
     return render(request,'sell.html')

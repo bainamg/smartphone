@@ -21,7 +21,7 @@ class PhoneModels(models.Model):
     created_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     is_available=models.BooleanField(null=True)
-    Image=models.ImageField(upload_to ='static/image/models') 
+    Image=models.ImageField(upload_to='static/image/models') 
 
 
 class Transactions:
