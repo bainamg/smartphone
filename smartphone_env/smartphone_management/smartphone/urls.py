@@ -24,7 +24,8 @@ urlpatterns = [
     path('create_models/',views.create_models,name='CreateModels'),
     path('update_models/',views.update_models,name='UpdateModels'),
     path('list_brands/',views.list_brands,name='ListBrands'),
-    path('list_models/',views.list_models,name='ListModels'),
     path('list_brand_models/<int:brand_id>',views.list_brand_models,name='ListBrandModels'),
+    path('list_model/<int:model_id>',views.list_model,name='ListModel'),
+    path('sell/',views.sell_models,name='SellModels'),
     path('',views.index,name='index')
 ]

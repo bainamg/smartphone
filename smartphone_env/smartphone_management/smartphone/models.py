@@ -8,7 +8,7 @@ class Brand(models.Model):
     Name=models.CharField(max_length=250)
     created_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=False, auto_now_add=True)
-    Image=models.ImageField(upload_to ='static/image/brand') 
+    Image=models.ImageField(upload_to ='static/image/brand')
 
 
 class PhoneModels(models.Model):

@@ -28,12 +28,17 @@ def update_models(request):
     return render(request,'update_models.html')
 
 def list_brands(request):
-    brand_obj=Brand.objects.all()
-    return render(request,'list_brand.html',{'brands':brand_obj})
+    brand_obj_list=Brand.objects.all()
+    return render(request,'list_brand.html',{'brands':brand_obj_list})
 
 def list_brand_models(request, brand_id):
     model_obj=PhoneModels.objects.filter(brand=brand_id)
     return render(request, 'list_brand_models.html', {"models":model_obj})
 
-def list_models(request):
-    return render(request,'sell.html')
+def sell_models(request):
+    model_obj=PhoneModels.objects.all()
+    return render(request,'sell.html',{"models":model_obj})
+
+def list_model(request,model_id):
+    model_obj=PhoneModels.objects.get(id=model_id)
+    return render(request,'list_model.html',{"model":model_obj})
