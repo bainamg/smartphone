@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from . models import Brand, PhoneModels
+from . models import Brand, PhoneModels, Transactions
+from django.contrib.auth.models import User
 from . import views
 
 # Create your views here.
@@ -35,10 +36,21 @@ def list_brand_models(request, brand_id):
     model_obj=PhoneModels.objects.filter(brand=brand_id)
     return render(request, 'list_brand_models.html', {"models":model_obj})
 
-def sell_models(request):
-    model_obj=PhoneModels.objects.all()
-    return render(request,'sell.html',{"models":model_obj})
-
-def list_model(request,model_id):
+def sell_model(request,model_id):
+    print("==========", request.POST)
     model_obj=PhoneModels.objects.get(id=model_id)
-    return render(request,'list_model.html',{"model":model_obj})
+    if request.POST:
+        user_obj = User.objects.get(id=1)
+        transaction_obj=Transactions(Transaction_type=request.POST.get('transaction_mode'), Model=model_obj, User=user_obj, Amount=model_obj.price) 
+        transaction_obj.save()
+
+        
+        model_count=model_obj.objects.value('count')
+        print("------ model count:", model_count)
+        reduce_count=PhoneModels(count=model_count)
+        reduce_count.save()
+
+    return render(request,'sell_model.html',{"model":model_obj})
+
+def final(request):
+    return render(request,'final.html')

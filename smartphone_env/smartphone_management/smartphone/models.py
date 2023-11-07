@@ -20,19 +20,20 @@ class PhoneModels(models.Model):
     price=models.FloatField(null=True)
     created_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=False, auto_now_add=True)
+    count=models.IntegerField(null=True)
     is_available=models.BooleanField(null=True)
     Image=models.ImageField(upload_to='static/image/models') 
 
 
-class Transactions:
+class Transactions(models.Model):
     Transaction_choice=[
-        ("card","card"),
-        ("cash","cash")
+        ('Card',"1"),
+        ('Cash',"2")
     ]
-    #User= models.ForeignKey(auth_user, on_delete=models.CASCADE)
+    
     User=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     Model= models.ForeignKey(PhoneModels, on_delete=models.CASCADE)
-    Transaction_type=models.CharField(choices=Transaction_choice,null=True,blank=True)
+    Transaction_type=models.CharField(max_length=200,choices=Transaction_choice,null=True,blank=True)
     Amount= models.IntegerField(null=True)
 
 

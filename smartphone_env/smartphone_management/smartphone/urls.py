@@ -25,7 +25,7 @@ urlpatterns = [
     path('update_models/',views.update_models,name='UpdateModels'),
     path('list_brands/',views.list_brands,name='ListBrands'),
     path('list_brand_models/<int:brand_id>',views.list_brand_models,name='ListBrandModels'),
-    path('list_model/<int:model_id>',views.list_model,name='ListModel'),
-    path('sell/',views.sell_models,name='SellModels'),
+    path('sell_model/<int:model_id>',views.sell_model,name='SellModel'),
+    path('final/',views.final,name='Final'),
     path('',views.index,name='index')
 ]
