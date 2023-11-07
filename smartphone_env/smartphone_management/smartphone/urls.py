@@ -26,6 +26,6 @@ urlpatterns = [
     path('list_brands/',views.list_brands,name='ListBrands'),
     path('list_brand_models/<int:brand_id>',views.list_brand_models,name='ListBrandModels'),
     path('sell_model/<int:model_id>',views.sell_model,name='SellModel'),
-    path('final/',views.final,name='Final'),
+    path('final/<int:model_id>',views.final,name='Final'),
     path('',views.index,name='index')
 ]

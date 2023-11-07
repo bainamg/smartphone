@@ -3,9 +3,10 @@
 {% block content %}
 
 <img src="{% static model.Image %}" width="100" height="100"></a><br />
+Number of available quantities:{{ model.available_quatities }}<br />
 
 
-<form method="POST">
+<form method="POST" action="{% url 'Final' model.id %}">
     {% csrf_token %}
     <h2>Transaction</h2>
 
@@ -16,7 +17,7 @@
         <option value="2">Cash</option>
     </select>
 
-<a href="{% url 'Final'  %}"><button name="submit" value="submit_brand">Place order</button>
+    <button name="submit" value="submit_brand">Place order</button>
 </form>
 
 {% endblock content %}

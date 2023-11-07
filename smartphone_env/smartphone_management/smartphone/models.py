@@ -20,7 +20,6 @@ class PhoneModels(models.Model):
     price=models.FloatField(null=True)
     created_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=False, auto_now_add=True)
-    count=models.IntegerField(null=True)
     is_available=models.BooleanField(null=True)
     Image=models.ImageField(upload_to='static/image/models') 
 

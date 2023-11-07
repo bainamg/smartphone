@@ -17,12 +17,10 @@ def create_brands(request):
 
 def create_models(request):
     if request.POST:
-        print("----- ", request.POST, request.FILES)
         brand_obj=Brand.objects.get(id=request.POST.get('selected_brand'))
         model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),Image=request.FILES.get('modelfilename'))
         model_obj.save()
     brands=Brand.objects.all();
-    print(brands)
     return render(request,'create_models.html', {'brands': brands})
 
 def update_models(request):
@@ -37,20 +35,21 @@ def list_brand_models(request, brand_id):
     return render(request, 'list_brand_models.html', {"models":model_obj})
 
 def sell_model(request,model_id):
-    print("==========", request.POST)
     model_obj=PhoneModels.objects.get(id=model_id)
+    return render(request,'sell_model.html',{"model":model_obj})
+
+def final(request, model_id):
+    model_obj=PhoneModels.objects.get(id=model_id)
+
     if request.POST:
         user_obj = User.objects.get(id=1)
         transaction_obj=Transactions(Transaction_type=request.POST.get('transaction_mode'), Model=model_obj, User=user_obj, Amount=model_obj.price) 
         transaction_obj.save()
 
+        quantity=model_obj.available_quatities-1
+        model_obj.available_quatities=quantity
+        if quantity==0:
+            model_obj.is_available=False
+        model_obj.save()
         
-        model_count=model_obj.objects.value('count')
-        print("------ model count:", model_count)
-        reduce_count=PhoneModels(count=model_count)
-        reduce_count.save()
-
-    return render(request,'sell_model.html',{"model":model_obj})
-
-def final(request):
     return render(request,'final.html')
