@@ -14,7 +14,6 @@ class Brand(models.Model):
 class PhoneModels(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     name= models.CharField(max_length=200)
-    votes = models.IntegerField(null=True)
     release_year=models.IntegerField(null=True)
     available_quatities=models.IntegerField(null=True)
     price=models.FloatField(null=True)
