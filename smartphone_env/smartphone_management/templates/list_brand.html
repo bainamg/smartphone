@@ -2,9 +2,12 @@
 {% load static %}
 {% block content %}
 <h1>Brands</h1>
+<div class="grid-container">
 {% for each_brand in brands %}
-<a href="{% url 'ListBrandModels' each_brand.id %}"><img src="{% static each_brand.Image %}" width="100" height="100"></a><br />
-Name:{{each_brand.Name}}<br>
-Models:{{each_brand.phonemodels_set.count}}<br />
+    <div class="grid-item">
+    <a href="{% url 'ListBrandModels' each_brand.id %}"><img src="{% static each_brand.Image %}" width="100" height="100"></a><br />
+    Name:{{each_brand.Name}}<br>
+    Models:{{each_brand.phonemodels_set.count}}<br />
+    </div>
 {%endfor%}
 {% endblock content %}

@@ -2,11 +2,23 @@
 {% block content %}
 <h1>BRAND DETAILS</h1>
 <h2>Enter Brand details</h2>
-
+<p>We can create new brands and upload their logo</p>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    Brand Name:<input type="text" name="brand_name" id="brand_name" /><br />
-    Logo: <input type="file" id="filename" name="filename" /><br />
-    <button name="submit" value="submit_brand">SAVE</button>
+    <table>
+        <tr>
+            <td>Brand Name:</td>    
+            <td><input type="text" name="brand_name" id="brand_name" /></td>
+        </tr>
+    
+        <tr>
+            <td>Logo:</td>
+            <td><input type="file" id="filename" name="filename" /></td>
+        </tr>
+
+        <tr>
+            <td><button name="submit" value="submit_brand">SAVE</button></td>
+        </tr>
+    </table>
 </form>
 {% endblock content %}

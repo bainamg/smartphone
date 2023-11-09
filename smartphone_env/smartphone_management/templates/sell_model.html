@@ -1,23 +1,28 @@
 {% extends "blank_layout.html" %}
 {% load static %}
 {% block content %}
-
-<img src="{% static model.Image %}" width="100" height="100"></a><br />
-Number of available quantities:{{ model.available_quatities }}<br />
-
+<table>
+    <tr>
+        <td><img src="{% static model.Image %}" width="120" height="240"></a></td>
+        <td>Model Name: {{model.name}}</td>
+    </tr> 
 
 <form method="POST" action="{% url 'Final' model.id %}">
     {% csrf_token %}
-    <h2>Transaction</h2>
+        <tr>
+            <td>Transaction type:</td>
+            <td>
+                <select name="transaction_mode">
+                    <option value="0" selected="selected">Please select</option>
+                    <option value="1">Card</option>
+                    <option value="2">Cash</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><button name="submit" value="submit_brand">Place order</button></td>
+        </tr>
 
-    Transaction Mode:
-    <select name="transaction_mode">
-        <option value="0" selected="selected">Please select</option>
-        <option value="1">Card</option>
-        <option value="2">Cash</option>
-    </select>
-
-    <button name="submit" value="submit_brand">Place order</button>
 </form>
-
+</table>
 {% endblock content %}

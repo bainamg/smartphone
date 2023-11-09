@@ -2,12 +2,17 @@
 {% load static %}
 {% block content %}
     {% if models %}
-    {% for each_model in models %}
-    <img src="{% static each_model.Image %}" width="100" height="100"><br />
-    Model Name: {{each_model.name}}<br /> 
-    Price:{{each_model.price}}<br/>
-    <a href="{% url 'SellModel' each_model.id %}"><button>Buy Now</button></a><br />
-    {% endfor %}
+    <div class="grid-container">
+        {% for each_model in models %}
+            <div class="grid-item">
+                <a href="{% url 'SellModel' each_model.id %}"><img src="{% static each_model.Image %}" width="50" height="100"></a><br />
+            Model Name: {{each_model.name}}<br /> 
+            Price:{{each_model.price}}<br/>
+            Available quantities:{{ each_model.available_quatities }}<br />
+            <a href="{% url 'SellModel' each_model.id %}"><button>Buy Now</button></a><br />
+            </div>
+        {% endfor %}
+    </div>
     {% else %}
         New models coming soon..
     {% endif %}

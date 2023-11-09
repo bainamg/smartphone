@@ -1,17 +1,49 @@
 {% extends "blank_layout.html" %}
 {% block content %}
-<h1>Provide your brand details</h1>
+<h1>Provide your model details</h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  Select Brand:<select name="selected_brand">
-    {% for each_brand in brands %}
-      <option value="{{ each_brand.id }}">{{ each_brand.Name }}</option>
-    {% endfor %}
-  </select><br />
-  Model:<input type="text" name="model" /><br />
-  Price:<input type="text" name="price" /><br />
-  Release Year:<input type="text" name="year" /><br />
-  Upload<input type="file" id="modelfilename" name="modelfilename"><br />
-  <button name="submit" value="submit_model">SAVE</button>
+
+ 
+  <table>
+    <tr>
+      <td>
+        Select Brand:
+      </td>
+      <td>
+        <select name="selected_brand">
+          <option value="0" selected="selected">Please select a brand</option>
+          {% for each_brand in brands %}
+            <option value="{{ each_brand.id }}">{{ each_brand.Name }}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Model:</td>
+      <td><input type="text" name="model"/></td>
+    </tr>  
+
+    <tr>
+      <td>Price:</td>
+      <td><input type="text" name="price"/></td>
+    </tr> 
+
+    <tr>
+      <td>Release Year:</td>
+      <td><input type="text" name="year"/></td>
+    </tr>
+
+    <tr>
+      <td>Upload</td>
+      <td><input type="file" id="modelfilename" name="modelfilename"></td>
+    </tr>
+
+    <tr>
+      <td><button name="submit" value="submit_model">SAVE</button></td>
+    </tr>
+  </table>
 </form>
+
 {% endblock content %}

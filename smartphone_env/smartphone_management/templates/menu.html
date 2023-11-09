@@ -1,8 +1,13 @@
-<ul>
-    <li><a href="{% url 'CreateBrands'%}">Create Brand</a></li>
-    <li><a href="{% url 'CreateModels'%}">Create Models</a></li>
-    <li><a href="{% url 'UpdateModels'%}">Update Models</a></li>
-    <li><a href="{% url 'ListBrands'%}">List Brands</a></li>
-    
-
-</ul>
+{% load static %}
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+                    <title>Document</title>
+                </head>
+                <ul style="list-style-type: none">
+                    <li ><a class="white" href="{% url 'Home'%}">Home</a></li>
+                    <li ><a class="white" href="{% url 'CreateBrands'%}">Create Brand</a></li>
+                    <li ><a class="white" href="{% url 'CreateModels'%}">Create Models</a></li>
+                    <li ><a class="white" href="{% url 'ListBrands'%}">List Brands</a></li>
+                </ul>
