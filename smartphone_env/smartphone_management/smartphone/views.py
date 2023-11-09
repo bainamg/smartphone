@@ -25,7 +25,7 @@ def create_models(request):
     try:
         if request.POST:
             brand_obj=Brand.objects.get(id=request.POST.get('selected_brand'))
-            model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),Image=request.FILES.get('modelfilename'))
+            model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),available_quatities=request.POST.get("available_quatities"),Image=request.FILES.get('modelfilename'))
             model_obj.save()
         return render(request,'create_models.html', {'brands': Brand.objects.all()})
     except Exception as e:
