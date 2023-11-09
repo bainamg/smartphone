@@ -6,6 +6,11 @@ li{
 a:active {
     color: #f06a6a;
 }
+
+.menu a:hover {
+    color: hotpink;
+}
+
 .header{
     width:100%;
     background-color: rgb(0, 0, 0);
