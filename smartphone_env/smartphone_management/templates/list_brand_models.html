@@ -1,5 +1,6 @@
 {% extends "blank_layout.html" %}
 {% load static %}
+{% load mathfilters %}
 {% block content %}
     {% if models %}
     <div class="grid-container">
@@ -8,7 +9,7 @@
                 <a href="{% url 'SellModel' each_model.id %}"><img src="{% static each_model.Image %}" width="50" height="100"></a><br />
             Model Name: {{each_model.name}}<br /> 
             Price:{{each_model.price}}<br/>
-            Available quantities:{{ each_model.available_quatities }}<br />
+            Available quantities:{{ each_model.added_quantities|sub:each_model.item_sold }}<br />
             <a href="{% url 'SellModel' each_model.id %}"><button>Buy Now</button></a><br />
             </div>
         {% endfor %}

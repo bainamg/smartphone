@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from . models import Brand, PhoneModels, Transactions
 from django.contrib.auth.models import User
 from . import views
-import traceback    
+import traceback   
+from django.db.models import Max 
 
 # Create your views here.
 def index(request):
@@ -25,7 +26,7 @@ def create_models(request):
     try:
         if request.POST:
             brand_obj=Brand.objects.get(id=request.POST.get('selected_brand'))
-            model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),available_quatities=request.POST.get("available_quatities"),Image=request.FILES.get('modelfilename'))
+            model_obj=PhoneModels(brand=brand_obj, name=request.POST.get("model"),price=request.POST.get("price"),release_year=request.POST.get("year"),added_quantities=request.POST.get("added_quantities"),Image=request.FILES.get('modelfilename'))
             model_obj.save()
         return render(request,'create_models.html', {'brands': Brand.objects.all()})
     except Exception as e:
@@ -34,7 +35,12 @@ def create_models(request):
         return render(request,'exception.html')
     
 def update_models(request):
-    return render(request,'update_models.html')
+    if request.POST:
+        brand_obj=Brand.objects.get(id=request.POST.get('selected_brand'))
+        model_obj=PhoneModels.objects.get(id=request.POST.get('selected_model'))
+        model_obj=PhoneModels(price=request.POST.get("price"),available_quatities=request.POST.get("available_quatities"))
+        model_obj.save()
+    return render(request,'update_models.html',{'brands': Brand.objects.all(),'models': PhoneModels.objects.all()})
 
 def list_brands(request):
     brand_obj_list=Brand.objects.all()
@@ -57,8 +63,8 @@ def final(request, model_id):
             transaction_obj=Transactions(Transaction_type=request.POST.get('transaction_mode'), Model=model_obj, User=user_obj, Amount=model_obj.price) 
             transaction_obj.save()
 
-            quantity=model_obj.available_quatities-1
-            model_obj.available_quatities=quantity
+            model_obj.item_sold=model_obj.item_sold+1
+            quantity=model_obj.added_quantities-1
             if quantity<0:
                 model_obj.is_available=False
                 return render(request,'error.html')
@@ -67,5 +73,22 @@ def final(request, model_id):
     
         
         return render(request,'final.html')
-    except:
+    except Exception as e:
+        message = traceback.format_exc()
+        print(message)
         return render(request,'exception.html')
+    
+def print_statics(request):
+    print("---- in ")
+    try:
+        model_obj=PhoneModels.objects.all()
+        top_selling_model=PhoneModels.objects.filter().order_by('-item_sold').first()
+        return render(request,'static.html', {'model': top_selling_model})
+    except Exception as e:
+        message = traceback.format_exc()
+        print(message)
+        return render(request,'exception.html')
+    
+
+
+

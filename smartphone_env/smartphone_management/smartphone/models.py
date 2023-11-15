@@ -15,12 +15,14 @@ class PhoneModels(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     name= models.CharField(max_length=200)
     release_year=models.IntegerField(null=True)
-    available_quatities=models.IntegerField(null=True)
+    item_sold=models.IntegerField(null=True)
+    added_quantities=models.IntegerField(null=True)
     price=models.FloatField(null=True)
     created_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=False, auto_now_add=True)
     is_available=models.BooleanField(null=True)
     Image=models.ImageField(upload_to='static/image/models') 
+    
 
 
 class Transactions(models.Model):

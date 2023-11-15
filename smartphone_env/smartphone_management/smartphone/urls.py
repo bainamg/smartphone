@@ -27,5 +27,7 @@ urlpatterns = [
     path('list_brand_models/<int:brand_id>',views.list_brand_models,name='ListBrandModels'),
     path('sell_model/<int:model_id>',views.sell_model,name='SellModel'),
     path('final/<int:model_id>',views.final,name='Final'),
+    path('view_statics/',views.print_statics,name='Static'),
     path('',views.index,name='Home')
+
 ]

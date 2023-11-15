@@ -1,0 +1,22 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+    Top selling model: {{model.name}}<br />
+    Number of items sold: {{model.item_sold}}<br />
+    <img src="{% static model.Image %}" height="150"/>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,53 @@
 {% extends "blank_layout.html" %}
-
 {% block content %}
-Content for update model
-{% endblock content%}
+<h1>Provide your model details</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+ 
+  <table>
+    <tr>
+      <td>
+        Select Brand:
+      </td>
+      <td>
+        <select name="selected_model">
+          <option value="0" selected="selected">Please select a brand</option>
+          {% for each_brand in brands %}
+            <option value="{{ each_brand.id }}">{{ each_brand.Name }}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+        <td>
+          Select Model:
+        </td>
+        <td>
+          <select name="selected_model">
+            <option value="0" selected="selected">Please select a model</option>
+            {% for each_model in models %}
+              <option value="{{ each_model.id }}">{{ each_model.Name }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+
+      
+
+    <tr>
+      <td>Price:</td>
+      <td><input type="text" name="price"/></td>
+    </tr> 
+
+    
+      <td>Available quatities:</td>
+      <td><input type="text" name="available_quatities"/></td>
+    </tr>
+
+    
+  </table>
+</form>
+
+{% endblock content %}
