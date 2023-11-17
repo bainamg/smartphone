@@ -1,9 +1,35 @@
 {% extends "blank_layout.html" %}
 {% load static %}
 {% block content %}
-    Top selling model: {{model.name}}<br />
-    Number of items sold: {{model.item_sold}}<br />
-    <img src="{% static model.Image %}" height="150"/>
+<h1>Top valued brands</h1>
+
+<table border="1">
+    {% for b_n in b_names %}
+    <tr>
+            <td>{{b_n}}</td>
+    <tr>
+{% endfor %}
+</table>
+
+<h1>Top valued models</h1><br>
+<table border="1">
+    {% for each_model in model %}
+    
+    <tr>
+            <th rowspan="3"><img src="{% static each_model.Image %}" height="150"/></th>
+            <td>Brand:</td><td>{{each_model.brand.Name}}</td>
+    </tr>
+    <tr>
+            <td>Model:</td><td> {{each_model.name}}</td>
+    </tr>
+    <tr>
+            <td>Number of items sold:</td><td> {{each_model.item_sold}}</td>
+            
+
+    </tr>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock content %}
 
 
